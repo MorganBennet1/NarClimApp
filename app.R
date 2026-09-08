@@ -2,6 +2,9 @@
 # SETTINGS
 #========================================================
 
+source(".global.R")
+source(".functions.R")
+
 netcdf_root <- "NetCDF"
 
 variables <- c("R99p")
