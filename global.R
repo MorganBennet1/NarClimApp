@@ -5,6 +5,9 @@ library(dplyr)
 library(purrr)
 library(readr)
 library(tibble)
+library(rsconnect)
+
+rsconnect::writeManifest()
 
 netcdf_root <- "NetCDF"
 
