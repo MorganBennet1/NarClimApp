@@ -6,15 +6,3 @@ library(purrr)
 library(readr)
 library(tibble)
 library(rsconnect)
-
-netcdf_root <- "NetCDF"
-
-variables <- c("R99p")
-
-periods <- as.character(
-  seq(
-    2030,
-    2090,
-    by = 5
-  )
-)
