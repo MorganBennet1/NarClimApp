@@ -211,7 +211,7 @@ server <- function(
       }
 
       feature <- input$map_draw_new_feature
-      print(str(feature)) #TEstting
+
       print(feature)
 
       coords <- feature$geometry$coordinates[[1]]
