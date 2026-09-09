@@ -318,7 +318,8 @@ server <- function(
           fillOpacity = 1,
           label = ~Location
         )
-
+      }
+        
       nc_files <- list.files(
         netcdf_root,
         pattern = paste0("^", input$variable, ".*\\.nc$"),
