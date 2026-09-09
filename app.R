@@ -210,22 +210,27 @@ server <- function(
         return()
       }
 
-      feature <-
-        input$map_draw_new_feature
+      feature <- input$map_draw_new_feature
+      print(str(feature)) #TEstting
+      print(feature)
 
-      coords <-
-        feature$geometry$coordinates[[1]]
+      coords <- feature$geometry$coordinates[[1]]
 
-      lons <- sapply(coords, `[`, 1)
-      lats <- sapply(coords, `[`, 2)
+      coords_df <- do.call(
+        rbind,
+        lapply(
+          coords,
+          unlist
+        )
+      )
 
       rectangle_bounds(
 
         list(
-          xmin = min(lons),
-          xmax = max(lons),
-          ymin = min(lats),
-          ymax = max(lats)
+          xmin = min(coords_df[,1]),
+          xmax = max(coords_df[,1]),
+          ymin = min(coords_df[,2]),
+          ymax = max(coords_df[,2])
         )
 
       )
