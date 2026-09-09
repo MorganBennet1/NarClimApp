@@ -228,7 +228,7 @@ server <- function(
       
       nc_files <- list.files(
         netcdf_root,
-        pattern = "\\.nc$",
+        pattern = paste0("^", input$variable, ".*\\.nc$"),
         full.names = TRUE
       )
       
