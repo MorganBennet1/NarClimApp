@@ -2758,10 +2758,181 @@
   },
   "files": {
     ".RData": {
-      "checksum": "d6a4391d6b03cffd26efbe7908058098"
+      "checksum": "35b3eb74ce00eea5cf55060677d253e5"
     },
     "app.R": {
-      "checksum": "c9d381634fca42fe8bbf129ba8c356b6"
+      "checksum": "0275d8a0f4a3807ef15b5f1672eb1846"
+    },
+    "NarClimApp/app.R": {
+      "checksum": "ce523ef36f6a6661e6fb1cb815a0526c"
+    },
+    "NarClimApp/functions.R": {
+      "checksum": "ff5dd758e6ac8b33e2703f5f04ba1d8d"
+    },
+    "NarClimApp/global.R": {
+      "checksum": "1bfffaec77b579be65bca3f3e8ca179d"
+    },
+    "NarClimApp/LICENSE": {
+      "checksum": "473a7959b44c2f42c375d904305b6307"
+    },
+    "NarClimApp/NetCDF/FFDIgt50_SSP126_ACCESS_PctChange.nc": {
+      "checksum": "72425c3ed94c978e8c619a69f1a0b939"
+    },
+    "NarClimApp/NetCDF/FFDIgt50_SSP126_ECEarth_PctChange.nc": {
+      "checksum": "a1fa847c0aeebd12164f40b8d00804a1"
+    },
+    "NarClimApp/NetCDF/FFDIgt50_SSP126_EnsembleMedian.nc": {
+      "checksum": "589a2ee22a69606c941d0f98ac3e6c2c"
+    },
+    "NarClimApp/NetCDF/FFDIgt50_SSP126_MPI_PctChange.nc": {
+      "checksum": "ad1afdcffccb391ced339208802bd221"
+    },
+    "NarClimApp/NetCDF/FFDIgt50_SSP126_NORESM_PctChange.nc": {
+      "checksum": "3546917c8233d84943ae954de71ecdf0"
+    },
+    "NarClimApp/NetCDF/FFDIgt50_SSP126_UKESM_PctChange.nc": {
+      "checksum": "748cb19e2d60e5302a11b48915940b3d"
+    },
+    "NarClimApp/NetCDF/FFDIgt50_SSP370_ACCESS_PctChange.nc": {
+      "checksum": "87c9e238b7d77a93d03f98e4a9d3d296"
+    },
+    "NarClimApp/NetCDF/FFDIgt50_SSP370_ECEarth_PctChange.nc": {
+      "checksum": "52eed098bea3e02ab16c45a13889ed11"
+    },
+    "NarClimApp/NetCDF/FFDIgt50_SSP370_MPI_PctChange.nc": {
+      "checksum": "b00ab5642cf6ace38f9939a2fc76210e"
+    },
+    "NarClimApp/NetCDF/FFDIgt50_SSP370_NORESM_PctChange.nc": {
+      "checksum": "bc25476b2ae8953d1429ae60c979500c"
+    },
+    "NarClimApp/NetCDF/FFDIgt50_SSP370_UKESM_PctChange.nc": {
+      "checksum": "ddb5c60110222d5238652b93ad255c9e"
+    },
+    "NarClimApp/NetCDF/R20mm_SSP126_ACCESS_PctChange.nc": {
+      "checksum": "315fdb95eef0be50fb33ae56b2fa9359"
+    },
+    "NarClimApp/NetCDF/R20mm_SSP126_ECEarth_PctChange.nc": {
+      "checksum": "1981ca6c4691195ae56f178b4efa7332"
+    },
+    "NarClimApp/NetCDF/R20mm_SSP126_MPI_PctChange.nc": {
+      "checksum": "5b267a4060bbdceceed7d3e40972404e"
+    },
+    "NarClimApp/NetCDF/R20mm_SSP126_NORESM_PctChange.nc": {
+      "checksum": "d9ad237dca83d5e88b353f475d8c844a"
+    },
+    "NarClimApp/NetCDF/R20mm_SSP126_UKESM_PctChange.nc": {
+      "checksum": "b9e8fc92b90318166a85c0ddd284f162"
+    },
+    "NarClimApp/NetCDF/R20mm_SSP370_ACCESS_PctChange.nc": {
+      "checksum": "1491b38f60702ca7e6d331cc24ac2768"
+    },
+    "NarClimApp/NetCDF/R20mm_SSP370_ECEarth_PctChange.nc": {
+      "checksum": "20cd1274e1dbd30421b6b69d1b6d9624"
+    },
+    "NarClimApp/NetCDF/R20mm_SSP370_MPI_PctChange.nc": {
+      "checksum": "f07f79985c9fbda9eaa93e56b3121d49"
+    },
+    "NarClimApp/NetCDF/R20mm_SSP370_NORESM_PctChange.nc": {
+      "checksum": "23dc330d71a5e6fd54eb9bcfd962ab5a"
+    },
+    "NarClimApp/NetCDF/R20mm_SSP370_UKESM_PctChange.nc": {
+      "checksum": "f695a4a7e07751b608768403276248fa"
+    },
+    "NarClimApp/NetCDF/R99p_SSP126_ACCESS_PctChange.nc": {
+      "checksum": "ec8df8a8f35fa808e7ae06d208f3cade"
+    },
+    "NarClimApp/NetCDF/R99p_SSP126_ECEarth_PctChange.nc": {
+      "checksum": "2b8c6b2a95c9a4ed1ffede7f05ae1b0a"
+    },
+    "NarClimApp/NetCDF/R99p_SSP126_MPI_PctChange.nc": {
+      "checksum": "82536c308b8c784dd3c188acbf39894d"
+    },
+    "NarClimApp/NetCDF/R99p_SSP126_NORESM_PctChange.nc": {
+      "checksum": "3e1ea15571af29a8e71acdde5d577a5f"
+    },
+    "NarClimApp/NetCDF/R99p_SSP126_UKESM_PctChange.nc": {
+      "checksum": "1237316ad953c37aa69b9b3df33e650b"
+    },
+    "NarClimApp/NetCDF/R99p_SSP370_ACCESS_PctChange.nc": {
+      "checksum": "d66d1b53ec6c6526388b0234800eddbe"
+    },
+    "NarClimApp/NetCDF/R99p_SSP370_ECEarth_PctChange.nc": {
+      "checksum": "595e2cfe65668be7fe124f1b6baaebde"
+    },
+    "NarClimApp/NetCDF/R99p_SSP370_MPI_PctChange.nc": {
+      "checksum": "269a58e8ace554e0e496a80acfab4f6f"
+    },
+    "NarClimApp/NetCDF/R99p_SSP370_NORESM_PctChange.nc": {
+      "checksum": "fe966631d632bcc699da7fbdc1f59ffc"
+    },
+    "NarClimApp/NetCDF/R99p_SSP370_UKESM_PctChange.nc": {
+      "checksum": "c8eee2c5fbdb7b1b9e75ffa4652dee87"
+    },
+    "NarClimApp/README.md": {
+      "checksum": "4ed80190b196590e80cbfc09674744c1"
+    },
+    "NetCDF/FFDIgt50_SSP126_ACCESS_PctChange.nc": {
+      "checksum": "72425c3ed94c978e8c619a69f1a0b939"
+    },
+    "NetCDF/FFDIgt50_SSP126_ECEarth_PctChange.nc": {
+      "checksum": "a1fa847c0aeebd12164f40b8d00804a1"
+    },
+    "NetCDF/FFDIgt50_SSP126_EnsembleMedian.nc": {
+      "checksum": "589a2ee22a69606c941d0f98ac3e6c2c"
+    },
+    "NetCDF/FFDIgt50_SSP126_MPI_PctChange.nc": {
+      "checksum": "ad1afdcffccb391ced339208802bd221"
+    },
+    "NetCDF/FFDIgt50_SSP126_NORESM_PctChange.nc": {
+      "checksum": "3546917c8233d84943ae954de71ecdf0"
+    },
+    "NetCDF/FFDIgt50_SSP126_UKESM_PctChange.nc": {
+      "checksum": "748cb19e2d60e5302a11b48915940b3d"
+    },
+    "NetCDF/FFDIgt50_SSP370_ACCESS_PctChange.nc": {
+      "checksum": "87c9e238b7d77a93d03f98e4a9d3d296"
+    },
+    "NetCDF/FFDIgt50_SSP370_ECEarth_PctChange.nc": {
+      "checksum": "52eed098bea3e02ab16c45a13889ed11"
+    },
+    "NetCDF/FFDIgt50_SSP370_MPI_PctChange.nc": {
+      "checksum": "b00ab5642cf6ace38f9939a2fc76210e"
+    },
+    "NetCDF/FFDIgt50_SSP370_NORESM_PctChange.nc": {
+      "checksum": "bc25476b2ae8953d1429ae60c979500c"
+    },
+    "NetCDF/FFDIgt50_SSP370_UKESM_PctChange.nc": {
+      "checksum": "ddb5c60110222d5238652b93ad255c9e"
+    },
+    "NetCDF/R20mm_SSP126_ACCESS_PctChange.nc": {
+      "checksum": "315fdb95eef0be50fb33ae56b2fa9359"
+    },
+    "NetCDF/R20mm_SSP126_ECEarth_PctChange.nc": {
+      "checksum": "1981ca6c4691195ae56f178b4efa7332"
+    },
+    "NetCDF/R20mm_SSP126_MPI_PctChange.nc": {
+      "checksum": "5b267a4060bbdceceed7d3e40972404e"
+    },
+    "NetCDF/R20mm_SSP126_NORESM_PctChange.nc": {
+      "checksum": "d9ad237dca83d5e88b353f475d8c844a"
+    },
+    "NetCDF/R20mm_SSP126_UKESM_PctChange.nc": {
+      "checksum": "b9e8fc92b90318166a85c0ddd284f162"
+    },
+    "NetCDF/R20mm_SSP370_ACCESS_PctChange.nc": {
+      "checksum": "1491b38f60702ca7e6d331cc24ac2768"
+    },
+    "NetCDF/R20mm_SSP370_ECEarth_PctChange.nc": {
+      "checksum": "20cd1274e1dbd30421b6b69d1b6d9624"
+    },
+    "NetCDF/R20mm_SSP370_MPI_PctChange.nc": {
+      "checksum": "f07f79985c9fbda9eaa93e56b3121d49"
+    },
+    "NetCDF/R20mm_SSP370_NORESM_PctChange.nc": {
+      "checksum": "23dc330d71a5e6fd54eb9bcfd962ab5a"
+    },
+    "NetCDF/R20mm_SSP370_UKESM_PctChange.nc": {
+      "checksum": "f695a4a7e07751b608768403276248fa"
     },
     "NetCDF/R99p_SSP126_ACCESS_PctChange.nc": {
       "checksum": "ec8df8a8f35fa808e7ae06d208f3cade"
