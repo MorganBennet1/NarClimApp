@@ -1,5 +1,6 @@
 library(shiny)
 library(leaflet)
+library(leaflet.extras)
 library(ncdf4)
 library(dplyr)
 library(purrr)
