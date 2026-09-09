@@ -7,7 +7,7 @@ source("functions.R")
 
 netcdf_root <- "NetCDF"
 
-variables <- c("R99p")
+variables <- c("R99p", "R20mm")
 
 periods <- as.character(
   seq(
