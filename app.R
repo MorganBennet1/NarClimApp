@@ -288,21 +288,36 @@ server <- function(
         )
 
         if(
-          !"Location" %in%
+          "Name" %in%
             names(locations)
         ){
 
           locations$Location <-
+            locations$Name
+
+        } else {
+
+          locations$Location <- 
             paste0(
               "Site_",
               seq_len(
                 nrow(locations)
               )
             )
-
-        }
-
+          
       }
+
+      leafletProxy("map") |>
+        clearMarkers() |>
+        addCircleMarkers(
+          data = locations,
+          lng = ~Longitude,
+          lat = ~Latitude,
+          radius = 5,
+          color = "blue",
+          fillOpacity = 1,
+          label = ~Location
+        )
 
       nc_files <- list.files(
         netcdf_root,
