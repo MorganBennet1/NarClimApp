@@ -95,43 +95,32 @@ ui <- fluidPage(
 
     ),
 
-    mainPanel(
+  mainPanel(
 
-      leafletOutput(
-        "map",
-        height = 500
-      ),
+    leafletOutput(
+      "map",
+      height = 500
+    ),
 
-      br(),
+    br(),
 
-      tableOutput(
-        "results_table"
-      ),
+    tableOutput(
+      "results_table"
+    ),
 
-      br(),
+    br(),
 
-      tags$div(
-        style = "
-          margin-top:15px;
-          padding:10px;
-          background-color:#f5f5f5;
-          border-left:4px solid #2c7fb8;
-          font-size:14px;",
-        textOutput("table_note")
-      )
-
-      output$table_note <- renderText({
-
-        req(results())
-
-        paste(
-          "Baseline covers the Period 1990-2009.",
-          "Scenario values show the % change against this baseline."
-        )
-
-      })
-
+    tags$div(
+      style = "
+        margin-top:15px;
+        padding:10px;
+        background-color:#f5f5f5;
+        border-left:4px solid #2c7fb8;
+        font-size:14px;",
+      textOutput("table_note")
     )
+
+  )
 
   )
 
@@ -436,26 +425,43 @@ server <- function(
     }
   )
 
-  #------------------------------------------------------
-  # RESULTS
-  #------------------------------------------------------
+#------------------------------------------------------
+# RESULTS
+#------------------------------------------------------
 
   output$results_table <-
     renderTable({
 
-    req(results())
+      req(results())
 
-    tbl <- results()
+      tbl <- results()
 
-    tbl$Value <- ifelse(
-      tbl$Period == 0,
-      sprintf("%.2f", tbl$Value),
-      paste0(sprintf("%.2f", tbl$Value), "%")
-    )
+      tbl$Value <- ifelse(
+        tbl$Period == 0,
+        sprintf("%.2f", tbl$Value),
+        paste0(sprintf("%.2f", tbl$Value), "%")
+      )
 
-    tbl
+      tbl$Period <- ifelse(
+        tbl$Period == 0,
+        "Baseline (1990-2009)",
+        as.character(tbl$Period)
+      )
+
+      tbl
 
     })
+
+  output$table_note <- renderText({
+
+    req(results())
+
+    paste(
+      "Baseline covers the Period 1990-2009.",
+      "Scenario values show the % change against this baseline."
+    )
+
+  })
 
   #------------------------------------------------------
   # DOWNLOAD
@@ -474,30 +480,30 @@ server <- function(
 
       },
 
-  content = function(file){
+      content = function(file){
 
-    tbl <- results()
+        tbl <- results()
 
-    tbl$Value <- ifelse(
-      tbl$Period <- ifelse(
-        tbl$Period == 0,
-        "Baseline (1990-2009)",
-        as.character(tbl$Period)
-      )
-      sprintf("%.2f", tbl$Value),
-      paste0(sprintf("%.2f", tbl$Value), "%")
+        tbl$Value <- ifelse(
+          tbl$Period == 0,
+          sprintf("%.2f", tbl$Value),
+          paste0(sprintf("%.2f", tbl$Value), "%")
+        )
+
+        tbl$Period <- ifelse(
+          tbl$Period == 0,
+          "Baseline (1990-2009)",
+          as.character(tbl$Period)
+        )
+
+        write_csv(
+          tbl,
+          file
+        )
+
+      }
+
     )
-
-    write_csv(
-      tbl,
-      file
-    )
-
-  }
-
-    )
-
-}
 
 #========================================================
 # RUN APP
