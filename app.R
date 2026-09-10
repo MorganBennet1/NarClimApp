@@ -9,11 +9,14 @@ netcdf_root <- "NetCDF"
 
 variables <- c("R99p", "R20mm", "FFDIgt50", "TX90p", "WSDI")
 
-periods <- as.character(
-  seq(
-    2030,
-    2090,
-    by = 5
+periods <- c(
+  "Baseline (1990-2009)" = "0",
+  as.character(
+    seq(
+      2030,
+      2090,
+      by = 5
+    )
   )
 )
 
@@ -139,6 +142,20 @@ server <- function(
   clicked <- reactiveVal(NULL)
 
   rectangle_bounds <- reactiveVal(NULL)
+
+  observeEvent(
+  input$input_method,
+  {
+
+    clicked(NULL)
+    rectangle_bounds(NULL)
+
+    leafletProxy("map") |>
+      clearMarkers() |>
+      clearShapes()
+
+  }
+)
 
   #------------------------------------------------------
   # MAP
