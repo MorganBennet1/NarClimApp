@@ -106,7 +106,30 @@ ui <- fluidPage(
 
       tableOutput(
         "results_table"
+      ),
+
+      br(),
+
+      tags$div(
+        style = "
+          margin-top:15px;
+          padding:10px;
+          background-color:#f5f5f5;
+          border-left:4px solid #2c7fb8;
+          font-size:14px;",
+        textOutput("table_note")
       )
+
+      output$table_note <- renderText({
+
+        req(results())
+
+        paste(
+          "Baseline covers the Period 1990-2009.",
+          "Scenario values show the % change against this baseline."
+        )
+
+      })
 
     )
 
@@ -420,11 +443,17 @@ server <- function(
   output$results_table <-
     renderTable({
 
-      req(
-        results()
-      )
+    req(results())
 
-      results()
+    tbl <- results()
+
+    tbl$Value <- ifelse(
+      tbl$Period == 0,
+      sprintf("%.2f", tbl$Value),
+      paste0(sprintf("%.2f", tbl$Value), "%")
+    )
+
+    tbl
 
     })
 
@@ -445,14 +474,26 @@ server <- function(
 
       },
 
-      content = function(file){
+  content = function(file){
 
-        write_csv(
-          results(),
-          file
-        )
+    tbl <- results()
 
-      }
+    tbl$Value <- ifelse(
+      tbl$Period <- ifelse(
+        tbl$Period == 0,
+        "Baseline (1990-2009)",
+        as.character(tbl$Period)
+      )
+      sprintf("%.2f", tbl$Value),
+      paste0(sprintf("%.2f", tbl$Value), "%")
+    )
+
+    write_csv(
+      tbl,
+      file
+    )
+
+  }
 
     )
 
