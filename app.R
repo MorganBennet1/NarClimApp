@@ -9,11 +9,14 @@ netcdf_root <- "NetCDF"
 
 variables <- c("R99p", "R20mm", "FFDIgt50", "TX90p", "WSDI")
 
-periods <- as.character(
-  seq(
-    2030,
-    2090,
-    by = 5
+periods <- c(
+  "Baseline (1990-2009)" = "0",
+  as.character(
+    seq(
+      2030,
+      2090,
+      by = 5
+    )
   )
 )
 
@@ -95,20 +98,32 @@ ui <- fluidPage(
 
     ),
 
-    mainPanel(
+  mainPanel(
 
-      leafletOutput(
-        "map",
-        height = 500
-      ),
+    leafletOutput(
+      "map",
+      height = 500
+    ),
 
-      br(),
+    br(),
 
-      tableOutput(
-        "results_table"
-      )
+    tableOutput(
+      "results_table"
+    ),
 
+    br(),
+
+    tags$div(
+      style = "
+        margin-top:15px;
+        padding:10px;
+        background-color:#f5f5f5;
+        border-left:4px solid #2c7fb8;
+        font-size:14px;",
+      textOutput("table_note")
     )
+
+  )
 
   )
 
@@ -127,6 +142,20 @@ server <- function(
   clicked <- reactiveVal(NULL)
 
   rectangle_bounds <- reactiveVal(NULL)
+
+  observeEvent(
+  input$input_method,
+  {
+
+    clicked(NULL)
+    rectangle_bounds(NULL)
+
+    leafletProxy("map") |>
+      clearMarkers() |>
+      clearShapes()
+
+  }
+)
 
   #------------------------------------------------------
   # MAP
@@ -413,20 +442,43 @@ server <- function(
     }
   )
 
-  #------------------------------------------------------
-  # RESULTS
-  #------------------------------------------------------
+#------------------------------------------------------
+# RESULTS
+#------------------------------------------------------
 
   output$results_table <-
     renderTable({
 
-      req(
-        results()
+      req(results())
+
+      tbl <- results()
+
+      tbl$Value <- ifelse(
+        tbl$Period == 0,
+        sprintf("%.2f", tbl$Value),
+        paste0(sprintf("%.2f", tbl$Value), "%")
       )
 
-      results()
+      tbl$Period <- ifelse(
+        tbl$Period == 0,
+        "Baseline (1990-2009)",
+        as.character(tbl$Period)
+      )
+
+      tbl
 
     })
+
+  output$table_note <- renderText({
+
+    req(results())
+
+    paste(
+      "Baseline covers the Period 1990-2009.",
+      "Scenario values show the % change against this baseline."
+    )
+
+  })
 
   #------------------------------------------------------
   # DOWNLOAD
@@ -447,8 +499,22 @@ server <- function(
 
       content = function(file){
 
+        tbl <- results()
+
+        tbl$Value <- ifelse(
+          tbl$Period == 0,
+          sprintf("%.2f", tbl$Value),
+          paste0(sprintf("%.2f", tbl$Value), "%")
+        )
+
+        tbl$Period <- ifelse(
+          tbl$Period == 0,
+          "Baseline (1990-2009)",
+          as.character(tbl$Period)
+        )
+
         write_csv(
-          results(),
+          tbl,
           file
         )
 
@@ -457,7 +523,7 @@ server <- function(
     )
 
 }
-
+  
 #========================================================
 # RUN APP
 #========================================================
