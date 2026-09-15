@@ -8,47 +8,41 @@ library("ncdf4") #Load Netcdf manipulation library
 
 ##Create functions
 
-get_periods <- function(varname) {
+##Extract dates from a netCDF
+get_dates <- function(nc) {
   
-  if (varname == "WSDI") {
-    list(
-      hist = 40:59,
-      fut = list(
-        "2030" = 7:26,
-        "2035" = 12:31,
-        "2040" = 17:36,
-        "2045" = 22:41,
-        "2050" = 27:46,
-        "2055" = 32:51,
-        "2060" = 37:56,
-        "2065" = 42:61,
-        "2070" = 47:66,
-        "2075" = 52:71,
-        "2080" = 57:76,
-        "2085" = 62:81,
-        "2090" = 67:86
-      )
+  time_vals <- ncvar_get(nc, "time")
+  
+  time_units <- ncatt_get(nc, "time", "units")$value
+  # e.g. "days since 1950-01-01"
+  
+  origin <- sub(".*since ", "", time_units)
+  
+  as.Date(time_vals, origin = origin)
+}
+get_periods <- function(dates) {
+  
+  years <- as.numeric(format(dates, "%Y"))
+  
+  list(
+    hist = which(years >= 1990 & years <= 2009),
+    
+    fut = list(
+      "2030" = which(years >= 2021 & years <= 2040),
+      "2035" = which(years >= 2026 & years <= 2045),
+      "2040" = which(years >= 2031 & years <= 2050),
+      "2045" = which(years >= 2036 & years <= 2055),
+      "2050" = which(years >= 2041 & years <= 2060),
+      "2055" = which(years >= 2046 & years <= 2065),
+      "2060" = which(years >= 2051 & years <= 2070),
+      "2065" = which(years >= 2056 & years <= 2075),
+      "2070" = which(years >= 2061 & years <= 2080),
+      "2075" = which(years >= 2066 & years <= 2085),
+      "2080" = which(years >= 2071 & years <= 2090),
+      "2085" = which(years >= 2076 & years <= 2095),
+      "2090" = which(years >= 2081 & years <= 2100)
     )
-  } else {
-    list(
-      hist = 469:708,
-      fut = list(
-        "2030" = 73:312,
-        "2035" = 133:372,
-        "2040" = 193:432,
-        "2045" = 253:492,
-        "2050" = 313:552,
-        "2055" = 373:612,
-        "2060" = 433:672,
-        "2065" = 493:732,
-        "2070" = 553:792,
-        "2075" = 613:852,
-        "2080" = 673:912,
-        "2085" = 733:972,
-        "2090" = 793:1032
-      )
-    )
-  }
+  )
 }
 get_agg_fun <- function(varname){
   
@@ -273,8 +267,10 @@ scenario_lists <- list(
   SSP370 = nc_370list
 )
 
-period_hist <- get_periods(varname)$hist
-period_fut <- get_periods(varname)$fut
+dates_hist <- get_dates(nc_ACCESS_hist)
+dates_fut <- get_dates(nc_ACCESS_370)
+periods_hist <- get_periods(dates_hist)$hist
+period_fut <- get_periods(dates_fut)$fut
 
 output_dir <- "C:/Users/MorganBennet/Documents/Nandos/PctChange"
 dir.create(output_dir,
